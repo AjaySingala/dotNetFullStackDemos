@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnit.Coverlet.Collector", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnit.Coverlet.MSBuild", "XUnit.Coverlet.MSBuild\XUnit.Coverlet.MSBuild.csproj", "{06CB2165-781D-499B-A698-ED909D5B544B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqDemo.Lib", "MoqDemo.Lib\MoqDemo.Lib.csproj", "{170D04B7-5EEC-442C-962C-243512815833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqDemo.Lib.Tests", "MoqDemo.Lib.Tests\MoqDemo.Lib.Tests.csproj", "{FF02EDB3-D4B2-452B-9C96-D5CCFBCA4905}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{06CB2165-781D-499B-A698-ED909D5B544B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06CB2165-781D-499B-A698-ED909D5B544B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06CB2165-781D-499B-A698-ED909D5B544B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{170D04B7-5EEC-442C-962C-243512815833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{170D04B7-5EEC-442C-962C-243512815833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{170D04B7-5EEC-442C-962C-243512815833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{170D04B7-5EEC-442C-962C-243512815833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF02EDB3-D4B2-452B-9C96-D5CCFBCA4905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF02EDB3-D4B2-452B-9C96-D5CCFBCA4905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF02EDB3-D4B2-452B-9C96-D5CCFBCA4905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF02EDB3-D4B2-452B-9C96-D5CCFBCA4905}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
