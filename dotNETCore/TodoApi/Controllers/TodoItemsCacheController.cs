@@ -12,9 +12,11 @@ namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoItemsDTOController : ControllerBase
+    public class TodoItemsCacheController : ControllerBase
     {
         private readonly TodoContext _context;
+        private IMemoryCache _cache;
+        private const string _todoListCacheKey = "todoList";
 
         private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
             new TodoItemDTO 
@@ -24,12 +26,13 @@ namespace TodoApi.Controllers
                 IsComplete = todoItem.IsComplete
             };
 
-        public TodoItemsDTOController(TodoContext context)
+        public TodoItemsCacheController(TodoContext context, IMemoryCache cache)
         {
             _context = context;
+            _cache = cache ?? throw new ArgumentNullException(nameof(cache)); 
         }
 
-        // GET: api/TodoItemsDTO
+        // GET: api/TodoItemsCache
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
@@ -38,12 +41,30 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            return await _context.TodoItems
-                .Select(x => ItemToDTO(x))
-                .ToListAsync();
+            if(_cache.TryGetValue(_todoListCacheKey, out IEnumerable<TodoItemDTO> todoItemsDTO))
+            {
+                Console.WriteLine("Todo List found in cache.");
+            }
+            else
+            {
+                todoItemsDTO = await _context.TodoItems
+                    .Select(x => ItemToDTO(x))
+                    .ToListAsync();
+                
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(60))
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
+                    .SetPriority(CacheItemPriority.Normal)
+                    .SetSize(1024);
+
+                _cache.Set(_todoListCacheKey, todoItemsDTO, cacheEntryOptions);
+                Console.WriteLine("GetTodoItems(): Todo List added to cache.");
+            }
+
+            return Ok(todoItemsDTO);
         }
 
-        // GET: api/TodoItemsDTO/5
+        // GET: api/TodoItemsCache/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
@@ -52,17 +73,39 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            if(_cache.TryGetValue(_todoListCacheKey, out IEnumerable<TodoItemDTO> todoItemsDTO))
+            {
+                Console.WriteLine("Todo List found in cache.");
+            }
+            else
+            {
+                todoItemsDTO = await _context.TodoItems
+                    .Select(x => ItemToDTO(x))
+                    .ToListAsync();
+                
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(60))
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
+                    .SetPriority(CacheItemPriority.Normal)
+                    .SetSize(1024);
+
+                _cache.Set(_todoListCacheKey, todoItemsDTO, cacheEntryOptions);
+                Console.WriteLine("GetTodoItem(id): Todo List added to cache.");
+            }
+
+            var todoItem = todoItemsDTO
+                .Where(t => t.Id == id)
+                .FirstOrDefault<TodoItemDTO>();
+
             if (todoItem == null)
             {
                 return NotFound();
             }
 
-            return ItemToDTO(todoItem);
-            
+            return todoItem;
         }
 
-        // PUT: api/TodoItemsDTO/5
+        // PUT: api/TodoItemsCache/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItemDTO todoItemDTO)
@@ -72,6 +115,8 @@ namespace TodoApi.Controllers
             {
                 return BadRequest();
             }
+
+            //_context.Entry(todoItem).State = EntityState.Modified;
 
             var todoItem = await _context.TodoItems.FindAsync(id);
             if(todoItem == null)
@@ -102,10 +147,14 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
+            // Reset Caching.
+            _cache.Remove(_todoListCacheKey);
+            Console.WriteLine("PutTodoItem(): Todo List removed from cache.");
+
             return NoContent();
         }
 
-        // POST: api/TodoItemsDTO
+        // POST: api/TodoItemsCache
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TodoItemDTO>> PostTodoItem(TodoItemDTO todoItemDTO)
@@ -125,11 +174,15 @@ namespace TodoApi.Controllers
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
+            // Reset Caching.
+            _cache.Remove(_todoListCacheKey);
+            Console.WriteLine("PostTodoItem(): Todo List removed from cache.");
+
             //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, ItemToDTO(todoItem));
         }
 
-        // DELETE: api/TodoItemsDTO/5
+        // DELETE: api/TodoItemsCache/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
         {
@@ -146,6 +199,10 @@ namespace TodoApi.Controllers
 
             _context.TodoItems.Remove(todoItem);
             await _context.SaveChangesAsync();
+
+            // Reset Caching.
+            _cache.Remove(_todoListCacheKey);
+            Console.WriteLine("DeleteTodoItem(): Todo List removed from cache.");
 
             return NoContent();
         }
