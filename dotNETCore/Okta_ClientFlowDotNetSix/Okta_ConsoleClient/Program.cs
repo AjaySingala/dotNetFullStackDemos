@@ -26,9 +26,9 @@ namespace Okta_ConsoleClient
         {
             HttpClient client = new HttpClient();
             var issuer = "https://dev-88745611.okta.com/oauth2/default/";
-            var clientId = "0oa5dz2otei9Ce5or5d7";
-            var clientSecret = "YIBGMXwvgAGPtWnyFsXiOWuwen5-fcnPT5Rh9bXh";
-            //var base64ClientIdClientSecret = "MG9hNWR6Mm90ZWk5Q2U1b3I1ZDc6WUlCR01Yd3ZnQUdQdFdueUZzWGlPV3V3ZW41LWZjblBUNVJoOWJYaA==";
+            var clientId = "{client_id}";
+            var clientSecret = "{client_secret}";
+            //var base64ClientIdClientSecret = "{base64ClientIdClientSecret}";
 
             var nvc = new List<KeyValuePair<string, string>>();
             nvc.Add(new KeyValuePair<string, string>("grant_type", "client_credentials"));
