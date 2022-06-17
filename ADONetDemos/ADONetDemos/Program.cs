@@ -42,7 +42,7 @@ class Program
         //InsertCategoryUsingStoredProc(connectionString);
         //Console.WriteLine();
 
-        // Repository and Unit of Work Design Pattern Examples.
+        // Repository Design Pattern Examples.
         GetCategoryById(1);
         GetCategoryById(999);
         Console.WriteLine();
@@ -54,7 +54,7 @@ class Program
         Console.ReadLine();
     }
 
-    #region Repository and Unit of Work Design Pattern Examples.
+    #region Repository Design Pattern Examples.
 
     static void TestGetCategoryById()
     {
