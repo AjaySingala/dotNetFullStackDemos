@@ -43,12 +43,12 @@ class Program
         //Console.WriteLine();
 
         // Repository Design Pattern Examples.
-        GetCategoryById(1);
-        GetCategoryById(999);
-        Console.WriteLine();
+        //GetCategoryById(1);
+        //GetCategoryById(999);
+        //Console.WriteLine();
 
-        TestGetCategoryById();
-        Console.WriteLine();
+        //TestGetCategoryById();
+        //Console.WriteLine();
 
         Console.Write("Press <ENTER> to continue...");
         Console.ReadLine();
