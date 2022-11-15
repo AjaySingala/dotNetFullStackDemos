@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection.Metadata.Ecma335;
 
+// CRUD: Create, Retrieve, Update, Delete Operations.
 namespace MinimalAPI_ADO
 {
     public class CategoryRepository

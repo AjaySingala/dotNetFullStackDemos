@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncDemos", "AsyncDemos\AsyncDemos.csproj", "{58041069-A352-40AA-BD7A-46425679B592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncDemos", "AsyncDemos\AsyncDemos.csproj", "{58041069-A352-40AA-BD7A-46425679B592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncDemoTwo", "AsyncDemoTwo\AsyncDemoTwo.csproj", "{196D649B-CA03-4D4B-9EA9-E3FE2FE66AE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncDemoTwo", "AsyncDemoTwo\AsyncDemoTwo.csproj", "{196D649B-CA03-4D4B-9EA9-E3FE2FE66AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncDemoThree", "AsyncDemoThree\AsyncDemoThree.csproj", "{4C2B5276-C869-444D-9F12-BAA150A7EB1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncDemoThree", "AsyncDemoThree\AsyncDemoThree.csproj", "{4C2B5276-C869-444D-9F12-BAA150A7EB1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncFileIO", "AsyncFileIO\AsyncFileIO.csproj", "{020F1D99-7F50-4BEC-8B23-3240CC1B0CF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncFileIO", "AsyncFileIO\AsyncFileIO.csproj", "{020F1D99-7F50-4BEC-8B23-3240CC1B0CF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncProcesses", "AsyncProcesses\AsyncProcesses.csproj", "{DB30C054-6BBD-4560-B350-64B17CB3E3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncProcesses_AsyncAwait", "AsyncProcesses_AsyncAwait\AsyncProcesses_AsyncAwait.csproj", "{713DCD75-7647-42A5-AF23-2C6EBD96AC10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncProcesses_AsyncAwaitTask", "AsyncProcesses_AsyncAwaitTask\AsyncProcesses_AsyncAwaitTask.csproj", "{EFEB0EF3-A511-42DB-8E0B-0D5B006BB23B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncProcesses_AsyncAwaitTaskMany", "AsyncProcesses_AsyncAwaitTaskMany\AsyncProcesses_AsyncAwaitTaskMany.csproj", "{EB9CAADB-C5D5-4B25-8B19-9C08BD3BD9AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,22 @@ Global
 		{020F1D99-7F50-4BEC-8B23-3240CC1B0CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{020F1D99-7F50-4BEC-8B23-3240CC1B0CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{020F1D99-7F50-4BEC-8B23-3240CC1B0CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB30C054-6BBD-4560-B350-64B17CB3E3AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB30C054-6BBD-4560-B350-64B17CB3E3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB30C054-6BBD-4560-B350-64B17CB3E3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB30C054-6BBD-4560-B350-64B17CB3E3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713DCD75-7647-42A5-AF23-2C6EBD96AC10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713DCD75-7647-42A5-AF23-2C6EBD96AC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713DCD75-7647-42A5-AF23-2C6EBD96AC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713DCD75-7647-42A5-AF23-2C6EBD96AC10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEB0EF3-A511-42DB-8E0B-0D5B006BB23B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEB0EF3-A511-42DB-8E0B-0D5B006BB23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEB0EF3-A511-42DB-8E0B-0D5B006BB23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEB0EF3-A511-42DB-8E0B-0D5B006BB23B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9CAADB-C5D5-4B25-8B19-9C08BD3BD9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9CAADB-C5D5-4B25-8B19-9C08BD3BD9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9CAADB-C5D5-4B25-8B19-9C08BD3BD9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9CAADB-C5D5-4B25-8B19-9C08BD3BD9AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
