@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>AJAX Demo</title>
+		<script>
+			function displayFullname() {
+				var request = new XMLHttpRequest();
+				let url = "https://jsonplaceholder.typicode.com/todos";
+				request.open("GET", url);
+				
+				request.onreadystatechange = function() {
+					if(this.readyState == 4 && this.status == 200) {
+						document.getElementById("result").innerHTML = this.responseText;
+					}
+				};
+				
+				request.send();
+			}
+		</script>
+	</head>
+	<body>
+		<h1>AJAX Demo</h1>
+		<div id="result">Getting some sample ToDo list data...
+			<p>Content of this DIV will be replace with response from the server...</p>
+		</div>
+		<button type="button" onclick="displayFullname();">Get Data</button>
+	</body>
+</html>
