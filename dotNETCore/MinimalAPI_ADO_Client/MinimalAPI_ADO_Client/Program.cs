@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -24,6 +25,13 @@ namespace MinimalAPI_ADO_Client
 
             try
             {
+                // Fetch all existing category records.
+                var categories = await GetAllCategoriesAsync();
+                foreach(var cate in categories)
+                {
+                    ShowCategory(cate);
+                }
+
                 // Create a new Category
                 Category category = new Category
                 {
@@ -38,6 +46,10 @@ namespace MinimalAPI_ADO_Client
                 // Get the Category
                 category = await GetCategoryAsync(url.ToString());
                 ShowCategory(category);
+
+                Console.WriteLine("Category record created. Please check in DB...");
+                Console.WriteLine("Press <ENTER> to Update this record...");
+                Console.ReadLine();
 
                 // Update the Category
                 Console.WriteLine("Updating description...");
@@ -69,8 +81,20 @@ namespace MinimalAPI_ADO_Client
         // Install-Package Microsoft.AspNet.WebApi.Client
         static void ShowCategory(Category category)
         {
-            Console.WriteLine($"Name: {category.CategoryName}\t" +
+            Console.WriteLine($"ID: {category.Categoryid}\t Name: {category.CategoryName}\t" +
                 $"Description: {category.Description}");
+        }
+
+        static async Task<List<Category>> GetAllCategoriesAsync()
+        {
+            List<Category> categories = new List<Category>();
+            var path = "categories";
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                categories = await response.Content.ReadAsAsync<List<Category>>();
+            }
+            return categories;
         }
 
         static async Task<Uri> CreateCategoryAsync(Category category)
@@ -94,15 +118,15 @@ namespace MinimalAPI_ADO_Client
             return category;
         }
 
-        static async Task<Category> UpdateCategoryAsync(Category Category)
+        static async Task<Category> UpdateCategoryAsync(Category category)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync(
-                $"categories/{Category.Categoryid}", Category);
+                $"categories/{category.Categoryid}", category);
             response.EnsureSuccessStatusCode();
 
             // Deserialize the updated Category from the response body.
-            Category = await response.Content.ReadAsAsync<Category>();
-            return Category;
+            category = await response.Content.ReadAsAsync<Category>();
+            return category;
         }
 
         static async Task<HttpStatusCode> DeleteCategoryAsync(long id)

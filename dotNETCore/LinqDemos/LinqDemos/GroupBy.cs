@@ -56,6 +56,7 @@ namespace LinqDemos
                 // -ve: Left aligned.
                 Console.WriteLine($"{car.Name,-10}\t{car.Color}\t${car.Price}");
             }
+            // SELECT * FROM Cars GROUP BY Color.
             var groups = from car in cars
                          group car by car.Color;
 
@@ -86,7 +87,7 @@ namespace LinqDemos
             {
                 Console.WriteLine($"{rev.Id}\t{rev.Quarter}\t{rev.Amount}");
             }
-
+            // SELECT Quarter, SUM(Amount) as 'Total' FROM revenues GROUP BY Quarter.
             var res = from revenue in revenues
                       group revenue by revenue.Quarter
                       into g

@@ -79,6 +79,23 @@ namespace EFCoreAPICodeFirstSample.Migrations
                             PhoneNumber = "111-222-3333"
                         });
                 });
+
+            modelBuilder.Entity("EFCoreAPICodeFirstSample.Models.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Students");
+                });
 #pragma warning restore 612, 618
         }
     }

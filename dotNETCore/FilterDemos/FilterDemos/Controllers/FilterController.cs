@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FilterDemos;
 using FilterDemos.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilterDemos.Controllers
 {

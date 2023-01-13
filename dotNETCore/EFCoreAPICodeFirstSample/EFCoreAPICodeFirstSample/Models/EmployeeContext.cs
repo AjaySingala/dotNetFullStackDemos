@@ -9,6 +9,7 @@ namespace EFCoreAPICodeFirstSample.Models
         {
         }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         // Seeding data.
         protected override void OnModelCreating(ModelBuilder modelBuilder)

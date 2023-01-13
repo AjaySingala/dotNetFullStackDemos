@@ -14,6 +14,7 @@ namespace LinqDemos
             string[] basketA = { "coin", "book", "fork", "cord", "needle" };
             string[] basketB = { "watches", "coin", "pen", "book", "pencil" };
 
+            // SELECT item FROM basketA INNER JOIN basketB ON basketA.item = basketB.item.
             var res = from item1 in basketA
                       join item2 in basketB
                       on item1 equals item2

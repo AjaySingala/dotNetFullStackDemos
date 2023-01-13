@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreAPICodeFirstSample.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20220614163337_EFCoreAPICodeFirstSample.Models.AddEmployeeGenderAndSeed")]
-    partial class EFCoreAPICodeFirstSampleModelsAddEmployeeGenderAndSeed
+    [Migration("20221201214054_EmployeeDB_Create")]
+    partial class EmployeeDB_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -14,7 +14,7 @@ builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 
 // Caching.
-//builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 

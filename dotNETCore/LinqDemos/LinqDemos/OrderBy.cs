@@ -26,6 +26,7 @@ namespace LinqDemos
             int[] vals = { 4, 5, 3, 2, 7, 0, 1, 6 };
             Console.WriteLine(string.Join(", ", vals));
 
+            // SELECT Num FROM vals ORDER BY Num ASC
             var result = from e in vals
                          orderby e ascending
                          select e;
@@ -53,6 +54,7 @@ namespace LinqDemos
             Console.WriteLine("---------------------");
             Console.WriteLine("Sort ascending by last name and salary");
 
+            // SELECT * FROM Orders ORDER BY Lastname, Salary.
             var sortedUsers = users.OrderBy(u => u.Lastname).ThenBy(u => u.Salary);
 
             foreach (var user in sortedUsers)

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreAPICodeFirstSample.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20220614161841_EFCoreAPICodeFirstSample.Models.EmployeeContext")]
-    partial class EFCoreAPICodeFirstSampleModelsEmployeeContext
+    [Migration("20221201214837_Students_Create")]
+    partial class Students_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,10 @@ namespace EFCoreAPICodeFirstSample.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,6 +58,45 @@ namespace EFCoreAPICodeFirstSample.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            EmployeeId = 1L,
+                            DateOfBirth = new DateTime(1979, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "uncle.bob@gmail.com",
+                            FirstName = "Uncle",
+                            Gender = "Male",
+                            LastName = "Bob",
+                            PhoneNumber = "999-888-7777"
+                        },
+                        new
+                        {
+                            EmployeeId = 2L,
+                            DateOfBirth = new DateTime(1981, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jan.kirsten@gmail.com",
+                            FirstName = "Jan",
+                            Gender = "Female",
+                            LastName = "Kirsten",
+                            PhoneNumber = "111-222-3333"
+                        });
+                });
+
+            modelBuilder.Entity("EFCoreAPICodeFirstSample.Models.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Students");
                 });
 #pragma warning restore 612, 618
         }
