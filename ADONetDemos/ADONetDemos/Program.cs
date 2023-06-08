@@ -43,10 +43,12 @@ class Program
         //Console.WriteLine();
 
         // Repository Design Pattern Examples.
+        // No Repo Pattern:
         //GetCategoryById(1);
         //GetCategoryById(999);
         //Console.WriteLine();
-
+        //
+        // With Repo Pattern:
         //TestGetCategoryById();
         //Console.WriteLine();
 
@@ -72,7 +74,7 @@ class Program
 
     static void GetCategoryById(int id)
     {
-        Console.WriteLine("Getting Category by Id using BL...");
+        Console.WriteLine("Getting Category by Id using BL (no Repo pattern)...");
         var bl = new CategoryBL();
         var category = bl.Get(id);
         if (category == null)
@@ -83,7 +85,7 @@ class Program
         {
             Console.WriteLine($"Category Id: {category.Categoryid}, Name: {category.CategoryName}");
         }
-        Console.WriteLine("Done getting Category by Id using BL...");
+        Console.WriteLine("Done getting Category by Id using BL (no Repo pattern)...");
     }
 
     #endregion
