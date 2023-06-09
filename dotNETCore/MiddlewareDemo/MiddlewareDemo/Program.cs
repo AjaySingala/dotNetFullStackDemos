@@ -57,7 +57,7 @@ app.MapRazorPages();
 
 //app.Run(async (context) =>
 //{
-//    await context.Response.WriteAsync("Hello World From 2nd Middleware");
+//    await context.Response.WriteAsync("\nHello World From 2nd Middleware");
 //});
 
 //app.Run();
@@ -66,32 +66,32 @@ app.MapRazorPages();
 
 #region Demo4
 
-//app.Map("/map1", HandleMapTest1);
+app.Map("/map1", HandleMapTest1);
 
-//app.Map("/map2", HandleMapTest2);
+app.Map("/map2", HandleMapTest2);
 
-//app.Run(async context =>
-//{
-//    await context.Response.WriteAsync("<p>Hello from non-Map delegate.</p>");
-//});
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("<p>Hello from non-Map delegate.</p>");
+});
 
-//app.Run();
+app.Run();
 
-//static void HandleMapTest1(IApplicationBuilder app)
-//{
-//    app.Run(async context =>
-//    {
-//        await context.Response.WriteAsync("Map Test 1");
-//    });
-//}
+static void HandleMapTest1(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 1");
+    });
+}
 
-//static void HandleMapTest2(IApplicationBuilder app)
-//{
-//    app.Run(async context =>
-//    {
-//        await context.Response.WriteAsync("Map Test 2");
-//    });
-//}
+static void HandleMapTest2(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        await context.Response.WriteAsync("Map Test 2");
+    });
+}
 
 #endregion
 
