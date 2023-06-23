@@ -5,9 +5,11 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralDemos", "GeneralDemos\GeneralDemos.csproj", "{9F38C4F2-7C88-470C-920B-2C168D3AE866}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumDemos", "EnumDemos\EnumDemos.csproj", "{EB064F09-B4A3-4CAF-8DF6-DD477597EDB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumDemos", "EnumDemos\EnumDemos.csproj", "{EB064F09-B4A3-4CAF-8DF6-DD477597EDB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumDbDemo", "EnumDbDemo\EnumDbDemo.csproj", "{C5480E2D-BE59-4270-9FCC-D0D9F3C814C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumDbDemo", "EnumDbDemo\EnumDbDemo.csproj", "{C5480E2D-BE59-4270-9FCC-D0D9F3C814C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YieldDemo", "YieldDemo\YieldDemo.csproj", "{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C5480E2D-BE59-4270-9FCC-D0D9F3C814C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5480E2D-BE59-4270-9FCC-D0D9F3C814C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5480E2D-BE59-4270-9FCC-D0D9F3C814C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
