@@ -1,0 +1,15 @@
+﻿namespace BankingApp.Entities
+{
+    public class Customer
+    {
+        public int Id { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public List<Account> Accounts { get; set; }
+
+        public Customer()
+        {
+            Accounts = new List<Account>();
+        }
+    }
+}
