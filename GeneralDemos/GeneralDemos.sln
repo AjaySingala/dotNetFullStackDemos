@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumDemos", "EnumDemos\Enum
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumDbDemo", "EnumDbDemo\EnumDbDemo.csproj", "{C5480E2D-BE59-4270-9FCC-D0D9F3C814C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YieldDemo", "YieldDemo\YieldDemo.csproj", "{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YieldDemo", "YieldDemo\YieldDemo.csproj", "{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordTypeDemo", "RecordTypeDemo\RecordTypeDemo.csproj", "{A1575EA1-C8B6-4F0F-8EF0-A3087A6ADFEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeDemo", "AttributeDemo\AttributeDemo.csproj", "{380D351E-D85B-49A3-8DB7-8CBA4F059ABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C3C050E-1E48-4FB9-AF2C-6D4DDF0DBE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1575EA1-C8B6-4F0F-8EF0-A3087A6ADFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1575EA1-C8B6-4F0F-8EF0-A3087A6ADFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1575EA1-C8B6-4F0F-8EF0-A3087A6ADFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1575EA1-C8B6-4F0F-8EF0-A3087A6ADFEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{380D351E-D85B-49A3-8DB7-8CBA4F059ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380D351E-D85B-49A3-8DB7-8CBA4F059ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380D351E-D85B-49A3-8DB7-8CBA4F059ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380D351E-D85B-49A3-8DB7-8CBA4F059ABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
