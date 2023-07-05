@@ -1,0 +1,493 @@
+﻿using EFDemo.Entities;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EFDemo
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //GetAllCustomers();
+            //GetAllOrders();
+            //GetCustomer("ABCRP");
+            //GetCustomer("BOTTM");
+            //GetCustomer("PICCO");
+            //GetCustomer("XYZAB");
+            //GetCustomersByCity("Madrid");
+            //GetCustomersByCity("Berlin");
+            //GetCustomersByCity("London");
+            //GetCustomersByCity("Mumbai");
+            //GetCustomersByCity("");
+
+            //FindCustomer("ALFKI");
+            //FindEmployee(8);
+            //SelectColumn();
+            //GetOrders("ALFKI");
+            //QueryProjectionDemo("ALFKI");
+            //QueryProjectionCustomClassDemo("ALFKI");
+            //QueryProjectionQuerySyntaxDemo("ALFKI");
+            //QueryProjectionCustomClassQuerySyntaxDemo("ALFKI");
+            //GetOrdersQuerySyntax("ALFKI");
+            //GroupOrdersByCustomer();
+
+            //JoinDemoMethodSyntax();
+            //JoinDemoQuerySyntax();
+        }
+
+        static void GetAllCustomers()
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetAllCustomers()...");
+
+            NWDbContext ctx = new NWDbContext();
+            foreach (Customer cust in ctx.Customers)
+            {
+                Console.WriteLine($"{cust.CustomerId}" +
+                    $" | {cust.CompanyName}" +
+                    $" | {cust.ContactName}" +
+                    $" | {cust.City}");
+            }
+        }
+
+        static void GetAllOrders()
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetAllOrders()...");
+
+            NWDbContext ctx = new NWDbContext();
+            foreach (var order in ctx.Orders)
+            {
+                Console.WriteLine($"{order.OrderId}" +
+                    $" | {order.OrderDate}" +
+                    $" | {order.CustomerId}" +
+                    $" | {order.EmployeeId}" +
+                    $" | {order.ShipName}" +
+                    $" | {order.ShipCity}");
+            }
+        }
+
+        static void GetCustomer(string id)
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetCustomer()...");
+
+            NWDbContext ctx = new NWDbContext();
+
+            //Customer customerRecord = new Customer();
+            //foreach (Customer cust in ctx.Customers)
+            //{
+            //    if(cust.CustomerId == id)
+            //    {
+            //        customerRecord = cust;
+            //        break;
+            //    }
+            //}
+            var customer = ctx.Customers
+                .Where(abc => abc.CustomerId == id)
+                .FirstOrDefault<Customer>();
+            if (customer != null)
+            {
+                Console.WriteLine($"{customer.CustomerId}" +
+                    $" | {customer.CompanyName}" +
+                    $" | {customer.ContactName}" +
+                    $" | {customer.City}");
+            }
+        }
+
+        static void GetCustomersByCity(string city)
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetCustomersByCity()...");
+
+            NWDbContext ctx = new NWDbContext();
+
+            var customers = ctx.Customers
+                .Where(c => c.City == city)
+                .ToList<Customer>();
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"{customer.CustomerId}" +
+                    $" | {customer.CompanyName}" +
+                    $" | {customer.ContactName}" +
+                    $" | {customer.City}");
+            }
+        }
+
+        static void FindCustomer(string id)
+        {
+            Console.WriteLine();
+            Console.WriteLine("FindCustomer()...");
+
+            NWDbContext ctx = new NWDbContext();
+
+            var customer = ctx.Customers
+                .Find(id);
+            if (customer != null)
+            {
+                Console.WriteLine($"{customer.CustomerId}" +
+                    $" | {customer.CompanyName}" +
+                    $" | {customer.ContactName}" +
+                    $" | {customer.City}");
+            }
+        }
+
+        static void FindEmployee(int id)
+        {
+            Console.WriteLine();
+            Console.WriteLine("FindEmployee()...");
+
+            NWDbContext ctx = new NWDbContext();
+
+            var emp = ctx.Employees
+                .Find(id);
+            if (emp != null)
+            {
+                Console.WriteLine($"{emp.EmployeeId}" +
+                    $" | {emp.Firstname}" +
+                    $" | {emp.Lastname}");
+            }
+        }
+
+        static void SelectColumn()
+        {
+            Console.WriteLine();
+            Console.WriteLine("SelectColumn()...");
+
+            var db = new NWDbContext();
+            var customers = db.Customers
+                .Select(c => c.CustomerId)
+                .ToList();
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"{customer}");
+            }
+        }
+
+        static void GetOrders(string customerId)
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetOrders()...");
+            //.Include(o => o.OrderDetails.OrderBy(od => od.ProductId))
+
+            var db = new NWDbContext();
+            var orders = db.Orders
+                .Where(o => o.CustomerId == customerId)
+                .Include("Customer")
+                .Include(o => o.Employee)
+                .Include("OrderDetails")
+                .Include("OrderDetails.Product")
+                .OrderBy(o => o.OrderDate)
+                .ToList<Order>();
+
+            foreach (var order in orders)
+            {
+                Console.WriteLine($"{order.OrderId}" +
+                    $" | {order.OrderDate}" +
+                    $" | {order.CustomerId}" +
+                    $" | {order.Customer.ContactName}" +
+                    $" | {order.EmployeeId}" +
+                    $" | {order.Employee.Lastname}, {order.Employee.Firstname}"
+                    );
+
+                foreach (var detail in order.OrderDetails)
+                {
+                    Console.WriteLine($"\t{detail.ProductId}" +
+                        $" | {detail.Product.ProductName}" +
+                        $" | {detail.Quantity}" +
+                        $" | {detail.UnitPrice}"
+                        );
+                }
+            }
+        }
+
+        static void QueryProjectionDemo(string customerId)
+        {
+            Console.WriteLine();
+            Console.WriteLine("QueryProjectionDemo() === Anonymous Type...");
+
+            using (var db = new NWDbContext())
+            {
+                var orders = db.Orders
+                    .Where(o => o.CustomerId == customerId)
+                    .Select(o => new
+                    {
+                        Id = o.OrderId,
+                        CustomerId = o.CustomerId,
+                        Name = o.Customer.ContactName
+                    });
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"{order.Id}" +
+                        $" | {order.CustomerId}" +
+                        $" | {order.Name}"
+                       );
+
+                }
+            }
+        }
+
+        static void QueryProjectionCustomClassDemo(string customerId)
+        {
+            Console.WriteLine();
+            Console.WriteLine("QueryProjectionCustomClassDemo()...");
+
+            using (var db = new NWDbContext())
+            {
+                var orders = db.Orders
+                    .Where(o => o.CustomerId == customerId)
+                    .Select(o => new CustomOrder
+                    {
+                        Id = o.OrderId,
+                        CustomerId = o.CustomerId,
+                        Name = o.Customer.ContactName
+                    });
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"{order.Id}" +
+                        $" | {order.CustomerId}" +
+                        $" | {order.Name}"
+                       );
+
+                }
+            }
+        }
+
+        static void QueryProjectionQuerySyntaxDemo(string customerId)
+        {
+            Console.WriteLine();
+            Console.WriteLine("QueryProjectionQuerySyntaxDemo() === Anonymous Type...");
+
+            using (var db = new NWDbContext())
+            {
+                var orders = from o in db.Orders
+                             where o.CustomerId == customerId
+                             select new
+                             {
+                                 Id = o.OrderId,
+                                 CustomerId = o.CustomerId,
+                                 Name = o.Customer.ContactName
+                             };
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"{order.Id}" +
+                        $" | {order.CustomerId}" +
+                        $" | {order.Name}"
+                       );
+
+                }
+            }
+        }
+
+        static void QueryProjectionCustomClassQuerySyntaxDemo(string customerId)
+        {
+            Console.WriteLine();
+            Console.WriteLine("QueryProjectionCustomClassQuerySyntaxDemo()...");
+
+            using (var db = new NWDbContext())
+            {
+                var orders = from o in db.Orders
+                             where o.CustomerId == customerId
+                             select new CustomOrder
+                             {
+                                 Id = o.OrderId,
+                                 CustomerId = o.CustomerId,
+                                 Name = o.Customer.ContactName
+                             };
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"{order.Id}" +
+                        $" | {order.CustomerId}" +
+                        $" | {order.Name}"
+                       );
+
+                }
+            }
+        }
+
+        static void GetOrdersQuerySyntax(string customerId)
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetOrdersQuerySyntax()...");
+
+            var db = new NWDbContext();
+            var orders = (from o in db.Orders
+                          where o.CustomerId == customerId
+                          select o)
+                         .Include("OrderDetails")
+                         .Include("Employee")
+                         .Include("Customer")
+                         .Include("OrderDetails.Product");
+
+            foreach (var order in orders)
+            {
+                Console.WriteLine($"{order.OrderId}" +
+                    $" | {order.OrderDate}" +
+                    $" | {order.CustomerId}" +
+                    $" | {order.Customer.ContactName}" +
+                    $" | {order.EmployeeId}" +
+                    $" | {order.Employee.Lastname}, {order.Employee.Firstname}"
+                    );
+
+                foreach (var detail in order.OrderDetails)
+                {
+                    Console.WriteLine($"\t{detail.ProductId}" +
+                        $" | {detail.Product.ProductName}" +
+                        $" | {detail.Quantity}" +
+                        $" | {detail.UnitPrice}"
+                        );
+                }
+            }
+        }
+
+        static void GroupOrdersByCustomer()
+        {
+            Console.WriteLine();
+            Console.WriteLine("GetOrders()...");
+
+            var db = new NWDbContext();
+            var orders = db.Orders
+                //.Where(o => o.CustomerId == customerId)
+                .GroupBy(o => o.CustomerId);
+                //.Include("Customer");
+                //.Include(o => o.Employee)
+                //.Include("OrderDetails")
+                //.Include("OrderDetails.Product")
+                //.ToList<Order>();
+
+            foreach (var order in orders)
+            {
+                Console.WriteLine($"Customer Id: {order.Key}");
+                foreach (var item in order)
+                {
+                    Console.WriteLine($"\t{item.OrderId}" +
+                        $" | {item.OrderDate}" +
+                        $" | {item.CustomerId}"
+                        //$" | {item.Customer.ContactName}"
+                        //$" | {item.EmployeeId}" +
+                        //$" | {item.Employee.Lastname}, {item.Employee.Firstname}"
+                        );
+                }
+            }
+
+            //Console.WriteLine();
+            //Console.WriteLine("Count...");
+            //var groups = db.Orders
+            //    //.Where(o => o.CustomerId == customerId)
+            //    .GroupBy(o => new { o.CustomerId })
+            //    .Select(grp => new
+            //    {
+            //        Count = grp.Count(),
+            //        Id = grp.Key
+            //    });
+
+            //foreach (var group in groups)
+            //{
+            //    Console.WriteLine($"Customer Id: {group.Id.CustomerId}" +
+            //        $" has {group.Count} Orders");
+            //}
+        }
+
+        static void JoinDemoMethodSyntax()
+        {
+            Console.WriteLine();
+            Console.WriteLine("JoinDemoMethodSyntax()...");
+
+            using(var db = new NWDbContext())
+            {
+                var orders = db.Orders
+                    .Join(db.Customers,
+                        p => p.CustomerId,
+                        f => f.CustomerId,
+                        (p,f) => new
+                        {
+                            CustomerId = p.CustomerId,
+                            OrderId = p.OrderId,
+                            OrderDate = p.OrderDate,
+                            CustomerName = f.ContactName,
+                            EmpId = p.EmployeeId
+                        })
+                    .Join(db.Employees,
+                        p => p.EmpId,
+                        f => f.EmployeeId,
+                        (p, f) => new
+                        {
+                            CustomerId = p.CustomerId,
+                            OrderId = p.OrderId,
+                            OrderDate = p.OrderDate,
+                            CustomerName = p.CustomerName,
+                            EmpId = p.EmpId,
+                            EmpName = f.Firstname + " " + f.Lastname
+                        })
+                    //.Where(o => o.CustomerId == "ALFKI")
+                    //.Select(o => new
+                    //{
+                    //    o.CustomerId,
+                    //    o.OrderId,
+                    //    o.EmpId,
+                    //    o.OrderDate,
+                    //    o.CustomerName,
+                    //    o.EmpName
+                    //})
+                    .ToList();
+
+                foreach(var order in orders)
+                {
+                    Console.WriteLine($"\t{order.OrderId}" +
+                        $" | {order.OrderDate}" +
+                        $" | {order.CustomerId}" +
+                        $" | {order.CustomerName}" +
+                        $" | {order.EmpId}" +
+                        $" | {order.EmpName}");
+
+                }
+            }
+        }
+
+        static void JoinDemoQuerySyntax()
+        {
+            Console.WriteLine();
+            Console.WriteLine("JoinDemoQuerySyntax()...");
+
+            using (var db = new NWDbContext())
+            {
+                var orders = (from o in db.Orders
+                    join c in db.Customers
+                        on o.CustomerId equals c.CustomerId
+                    join e in db.Employees
+                        on o.EmployeeId equals e.EmployeeId
+                        select new
+                        {
+                            CustomerId = o.CustomerId,
+                            OrderId = o.OrderId,
+                            OrderDate = o.OrderDate,
+                            CustomerName = c.ContactName,
+                            EmpId = o.EmployeeId,
+                            EmpName = e.Firstname + " " + e.Lastname
+                        })
+                    .ToList();
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"\t{order.OrderId}" +
+                        $" | {order.OrderDate}" +
+                        $" | {order.CustomerId}" +
+                        $" | {order.CustomerName}" +
+                        $" | {order.EmpId}" +
+                        $" | {order.EmpName}");
+
+                }
+            }
+        }
+
+    }
+}
