@@ -19,7 +19,7 @@
 
             // Displays after result are obtained.
             Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         static async Task<int> LongProcess1()

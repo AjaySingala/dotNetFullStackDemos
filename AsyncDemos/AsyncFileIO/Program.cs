@@ -36,7 +36,7 @@ namespace AsyncFileIO
         {
             int length = 0;
 
-            Console.WriteLine(" File reading is stating");
+            Console.WriteLine(" File reading is starting");
             using (StreamReader reader = new StreamReader(file))
             {
                 // Reads all characters from the current position to the end of

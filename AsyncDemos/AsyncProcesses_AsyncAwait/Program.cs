@@ -8,7 +8,7 @@
             ShortProcess();
 
             Console.WriteLine("Press <ENTER> to continue...");  // Displays early.
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         public static async void LongProcess()
