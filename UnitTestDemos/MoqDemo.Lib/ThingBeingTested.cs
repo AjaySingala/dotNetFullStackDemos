@@ -24,5 +24,10 @@ namespace MoqDemo.Lib
 
             return $"{fullName} = {_thingDependency.Meaning}";
         }
+
+        public bool ChargeTheCard(int amt, Card crd)
+        {
+            return _thingDependency.Charge(amt, crd);
+        }
     }
 }

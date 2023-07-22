@@ -4,5 +4,6 @@
     {
         string JoinUpper(string a, string b);
         int Meaning { get; }
+        bool Charge(int amount, Card card);
     }
 }

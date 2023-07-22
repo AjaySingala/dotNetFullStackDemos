@@ -61,5 +61,38 @@ namespace MoqDemo.Lib.Tests
             // Assert that the Meaning property was accessed once
             mockDependency.Verify(x => x.Meaning, Times.Once);
         }
+
+        [Fact]
+        public void TestCardUsingMockDependency()
+        {
+            // create mock version
+            var mockDependency = new Mock<IThingDependency>();
+
+            // set up mock version's method
+            mockDependency.Setup(x => x.JoinUpper("John", "Smith"))
+                          .Returns("John Smith");
+
+            // set up mock version's property
+            mockDependency.Setup(x => x.Meaning)
+                          .Returns(42);
+
+            // Mock the card.
+            var card = new Card
+            {
+                Name = "Peter Quill",
+                Number = 1234567890,
+                CVV = 666
+            };
+            mockDependency.Setup(t => t.Charge(123, card)).Returns(true);
+            //mockDependency.Setup(t => t.Charge(It.IsAny<int>(), card)).Returns(true);
+
+            // create thing being tested with a mock dependency
+            var sut = new ThingBeingTested(mockDependency.Object);
+
+            var result = sut.X();
+            var res2 = sut.ChargeTheCard(122, card);
+
+            Assert.Equal("John Smith = 42", result);
+        }
     }
 }

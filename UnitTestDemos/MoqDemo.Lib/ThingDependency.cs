@@ -14,5 +14,11 @@ namespace MoqDemo.Lib
         }
 
         public int Meaning => throw new NotImplementedException();
+
+        //public bool Charge(string name, int number, int cvv)
+        public bool Charge(int amount, Card card)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
