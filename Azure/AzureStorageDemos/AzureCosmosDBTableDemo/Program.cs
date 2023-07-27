@@ -78,5 +78,3 @@ foreach (var item in products)
 {
     Console.WriteLine(item.Name);
 }
-
-

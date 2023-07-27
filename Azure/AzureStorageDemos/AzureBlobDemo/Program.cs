@@ -1,4 +1,5 @@
 ﻿//install-package Azure.Storage.Blobs
+// Set env var "AZURE_STORAGE_CONNECTION_STRING".
 
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;

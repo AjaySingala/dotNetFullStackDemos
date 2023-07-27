@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp", "FunctionApp\FunctionApp.csproj", "{0CA7D1AA-7034-4EE0-875B-20E38FE374FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp1", "FunctionApp1\FunctionApp1.csproj", "{AC92D9A9-3912-4F3E-BDC5-47013BDEC3BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp1", "FunctionApp1\FunctionApp1.csproj", "{AC92D9A9-3912-4F3E-BDC5-47013BDEC3BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DurableFunctionApp", "DurableFunctionApp\DurableFunctionApp.csproj", "{187248D2-89FF-491D-9F70-D878B9FDC978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AC92D9A9-3912-4F3E-BDC5-47013BDEC3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC92D9A9-3912-4F3E-BDC5-47013BDEC3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC92D9A9-3912-4F3E-BDC5-47013BDEC3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187248D2-89FF-491D-9F70-D878B9FDC978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187248D2-89FF-491D-9F70-D878B9FDC978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187248D2-89FF-491D-9F70-D878B9FDC978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187248D2-89FF-491D-9F70-D878B9FDC978}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
