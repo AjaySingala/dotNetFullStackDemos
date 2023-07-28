@@ -1,4 +1,6 @@
-﻿using Azure.Messaging.ServiceBus;
+﻿// install-package Azure.Messaging.ServiceBus
+
+using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Amqp.Framing;
 using System;
 
@@ -6,7 +8,7 @@ namespace QueueSender
 {
     internal class Program
     {
-        static string _sbConnectionString = "Endpoint=sb://ajs-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=cpvHV1LcWdqOGtaAg56mk9H5807k3P7Mj+ASbIDHT/A=";
+        static string _sbConnectionString = "<service bus connection string>";
         static string _queue = "ajsqueueone";
 
         public static void Main(string[] args)
@@ -87,7 +89,7 @@ namespace QueueSender
 
                 // Get the message body as a string.
                 string body = receivedMessage.Body.ToString();
-                Console.WriteLine(body);
+                Console.WriteLine($"Received message: {body}");
             }
             catch (Exception ex)
             {
@@ -101,7 +103,7 @@ namespace QueueSender
             Console.WriteLine("SendMessageBatch()...");
 
             // Number of messages to be sent to the queue.
-            const int numOfMessages = 3;
+            const int numOfMessages = 4;
             var clientOptions = new ServiceBusClientOptions()
             {
                 TransportType = ServiceBusTransportType.AmqpWebSockets
@@ -116,12 +118,11 @@ namespace QueueSender
 
             for (int i = 1; i <= numOfMessages; i++)
             {
-                var msg = new ServiceBusMessage($"Message #{i}");
+                var msg = new ServiceBusMessage($"Message #{i} Batch");
                 Console.WriteLine($"Sending message {msg.Body}...");
 
                 // try adding a message to the batch
                 if (!messageBatch.TryAddMessage(msg))
-
                 {
                     // If it is too large for the batch.
                     throw new Exception($"The message '{msg.Body}' is too large to fit in the batch.");

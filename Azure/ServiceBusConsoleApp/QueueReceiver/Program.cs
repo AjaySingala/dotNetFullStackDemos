@@ -38,7 +38,7 @@ Task ErrorHandler(ProcessErrorEventArgs args)
 // If you use the default AmqpTcp, make sure that ports 5671 and 5672 are open.
 
 // TODO: Replace the <NAMESPACE-CONNECTION-STRING> and <QUEUE-NAME> placeholders
-string _sbConnectionString = "Endpoint=sb://ajs-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=cpvHV1LcWdqOGtaAg56mk9H5807k3P7Mj+ASbIDHT/A=";
+string _sbConnectionString = "<service bus connection string>";
 string _queue = "ajsqueueone";
 
 var clientOptions = new ServiceBusClientOptions()

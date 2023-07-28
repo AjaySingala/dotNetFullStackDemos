@@ -17,8 +17,8 @@ namespace FunctionApp
         //public static MultiResponse Run(
         [QueueOutput("outqueue")]
         public static string Run(
-        [QueueTrigger("ajs-queue-items", Connection = "ajsQueueStorage")] string myQueueItem,
-        //[QueueTrigger("ajs-queue-items", Connection = "AzureWebJobsStorage")] string myQueueItem,
+            //[QueueTrigger("ajs-queue-items", Connection = "ajsQueueStorage")] string myQueueItem,
+            [QueueTrigger("ajs-queue-items", Connection = "AzureWebJobsStorage")] string myQueueItem,
         FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("FunctionQueueTrigger");
