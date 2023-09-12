@@ -1,0 +1,127 @@
+﻿query GamesQuery {
+  allGames {
+    id
+    title
+    platforms
+    reviews {
+      id
+    }
+  }
+}
+
+query GameQuery($id: String!) {
+  game(id: $id) {
+    id
+    title
+    platforms
+  }
+}
+
+mutation AddGame($game: AddGameInput!) {
+  addGame(input: $game) {
+    id,
+    title,
+    platforms
+  }
+}
+
+mutation UpdateGame($id:String!, $game: EditGameInput!) {
+  updateGame(id: $id, input: $game) {
+    id
+    title
+    platforms
+  }
+} 
+
+mutation DeleteGame($id: String!) {
+  deleteGame(id: $id) {
+    id
+    title
+    platforms
+  }
+}
+
+query ReviewsQuery {
+  allReviews {
+    id
+    rating
+    content
+  }
+}
+
+query ReviewQuery($id: String!) {
+  review(id: $id) {
+	id
+	rating
+	content
+  }
+}
+
+query AuthorsQuery {
+  allAuthors {
+    id
+    name
+    isVerified
+  }
+}
+
+query AuthorQuery($id: String!) {
+  author(id: $id) {
+    id
+    name
+    isVerified
+  }
+}
+
+query GameReviewQuery($id: String!) {
+  game(id: $id) {
+    id
+    title
+    platforms
+    reviews {
+      id
+      rating
+      author {
+        id
+        name
+      }
+    }
+  }
+}
+
+query ReviewsCompleteQuery {
+  allReviews {
+    id
+    rating
+    content
+    author {
+      id
+      name
+    },
+    game {
+      id
+      title
+      platforms
+      reviews {
+        id
+      }
+    }
+  }
+}
+
+query ReviewQuery($id: String!) {
+  review(id: $id) {
+    id
+    rating
+    content
+    game {
+      id
+      title
+      reviews {
+        id
+        content
+      }
+    }
+  }
+}
+

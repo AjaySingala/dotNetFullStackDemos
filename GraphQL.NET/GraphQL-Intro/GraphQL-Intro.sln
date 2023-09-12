@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-Intro", "GraphQL-Intro\GraphQL-Intro.csproj", "{AB01039D-A172-4FC4-B7F0-E99DB2F50CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL-Intro", "GraphQL-Intro\GraphQL-Intro.csproj", "{AB01039D-A172-4FC4-B7F0-E99DB2F50CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL-GamesReviewsAuthors", "GraphQL-GamesReviewsAuthors\GraphQL-GamesReviewsAuthors.csproj", "{C1293DFE-BF6E-4267-A17A-824EC5209105}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AB01039D-A172-4FC4-B7F0-E99DB2F50CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB01039D-A172-4FC4-B7F0-E99DB2F50CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB01039D-A172-4FC4-B7F0-E99DB2F50CD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1293DFE-BF6E-4267-A17A-824EC5209105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1293DFE-BF6E-4267-A17A-824EC5209105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1293DFE-BF6E-4267-A17A-824EC5209105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1293DFE-BF6E-4267-A17A-824EC5209105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
