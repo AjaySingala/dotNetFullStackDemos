@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp1", "FunctionApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DurableFunctionApp", "DurableFunctionApp\DurableFunctionApp.csproj", "{187248D2-89FF-491D-9F70-D878B9FDC978}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBusOrders", "ServiceBusOrders\ServiceBusOrders.csproj", "{7A68D0C5-3412-4AC9-976F-15D714EDFF92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{187248D2-89FF-491D-9F70-D878B9FDC978}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{187248D2-89FF-491D-9F70-D878B9FDC978}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{187248D2-89FF-491D-9F70-D878B9FDC978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A68D0C5-3412-4AC9-976F-15D714EDFF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A68D0C5-3412-4AC9-976F-15D714EDFF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A68D0C5-3412-4AC9-976F-15D714EDFF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A68D0C5-3412-4AC9-976F-15D714EDFF92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
