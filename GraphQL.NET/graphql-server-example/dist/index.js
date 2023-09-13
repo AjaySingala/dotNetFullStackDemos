@@ -15,11 +15,11 @@ const books = [
     },
 ];
 let games = [
-    { id: '1', title: 'Zelda, Tears of the Kingdom', platform: ['Switch'] },
-    { id: '2', title: 'Final Fantasy 7 Remake', platform: ['PS5', 'Xbox'] },
-    { id: '3', title: 'Elden Ring', platform: ['PS5', 'Xbox', 'PC'] },
-    { id: '4', title: 'Mario Kart', platform: ['Switch'] },
-    { id: '5', title: 'Pokemon Scarlet', platform: ['PS5', 'Xbox', 'PC'] },
+    { id: '1', title: 'Zelda, Tears of the Kingdom', platforms: ['Switch'] },
+    { id: '2', title: 'Final Fantasy 7 Remake', platforms: ['PS5', 'Xbox'] },
+    { id: '3', title: 'Elden Ring', platforms: ['PS5', 'Xbox', 'PC'] },
+    { id: '4', title: 'Mario Kart', platforms: ['Switch'] },
+    { id: '5', title: 'Pokemon Scarlet', platforms: ['PS5', 'Xbox', 'PC'] },
 ];
 let authors = [
     { id: '1', name: 'mario', verified: true },
@@ -49,7 +49,7 @@ const typeDefs = `#graphql
     type Game {
         id: ID!,
         title: String!,
-        platform: [String]!
+        platforms: [String]!
         reviews: [Review!]
     }
     type Review {
@@ -87,11 +87,11 @@ const typeDefs = `#graphql
     },
     input EditGameInput {
         title: String
-        platform: [String!]
+        platforms: [String!]
     },
     input AddGameInput {
         title: String!
-        platform: [String!]!
+        platforms: [String!]!
     }
 `;
 // Resolvers define how to fetch the types defined in your schema.
@@ -147,13 +147,14 @@ const resolvers = {
             // const newGame = {
             //     id: String(games.length + 1),
             //     title: args.game.title,
-            //     platform: args.game.platform,
+            //     platforms: args.game.platforms,
             // }
             let game = {
                 ...args.game,
                 id: Math.floor(Math.random() * 10000).toString()
             };
             games.push(game);
+            console.log("Added game ", game);
             return game;
         },
         updateGame(_, args) {

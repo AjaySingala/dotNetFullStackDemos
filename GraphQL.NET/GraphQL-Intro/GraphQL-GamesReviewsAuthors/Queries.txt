@@ -25,6 +25,14 @@ mutation AddGame($game: AddGameInput!) {
   }
 }
 
+Add Data:
+{
+  "game": {
+    "title": "Red Dead Redemption II",
+    "platforms": ["XBox One", "PS4"]
+  }
+}
+
 mutation UpdateGame($id:String!, $game: EditGameInput!) {
   updateGame(id: $id, input: $game) {
     id
@@ -33,12 +41,25 @@ mutation UpdateGame($id:String!, $game: EditGameInput!) {
   }
 } 
 
+Update Data:
+{
+  "id": "7817",
+  "game": {
+    "platforms": ["XBox One", "PS4", "Switch"]
+  }
+}
+
 mutation DeleteGame($id: String!) {
   deleteGame(id: $id) {
     id
     title
     platforms
   }
+}
+
+Delete Data:
+{
+  "id": "7817"
 }
 
 query ReviewsQuery {
