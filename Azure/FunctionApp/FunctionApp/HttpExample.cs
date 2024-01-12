@@ -24,7 +24,7 @@ namespace FunctionApp
             _logger = loggerFactory.CreateLogger<HttpExample>();
         }
 
-        #region HttpExample Simple (without Queue Trigger).
+        #region HttpExample Simple (without Queue Output).
         // Remember to comment out the Run function below and uncomment this one.
 
         //[Function("HttpExample")]
@@ -50,7 +50,7 @@ namespace FunctionApp
 
         #endregion
 
-        #region HttpExample Simple (with Queue Trigger).
+        #region HttpExample Simple (with Queue Output).
         // Remember to comment out the Run function above and uncomment this one.
 
         [Function("HttpExample")]
